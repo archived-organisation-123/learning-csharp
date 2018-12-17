@@ -536,6 +536,75 @@
                     </textarea>
                 </section>
             </section>
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Collections
+
+                        So far we have only been working with variables that contain a single value, but we often want to work with collections of values.
+
+                        C#/.NET gives us many kinds of collections that we can work with, and we will look at a few now.
+
+                        * Arrays
+                        * Lists
+                        * Dictionaries
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Arrays
+
+                        We have already seen an example of an array:
+
+                        The args parameter to the main method.
+
+                        We can inspect the arguments array, and look at it's content.
+
+                        As we aren't passing any arguments this will fail
+                        ```cs
+                        Console.WriteLine("Number of arguments passed " + args.Length); // args.Length: 0
+
+                        // This attempt to access the first argument fails
+                        Console.WriteLine(args[0]); // System.IndexOutOfRangeException: Index was outside the bounds of the array.
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        There's not much that we can do with an empty array, so let's look at using our own arrays.
+
+                        We can create and use an array like this
+                        ```cs
+                        // Creates an array of 6 ints.
+                        // All initialised to the default value: 0
+                        var numbers = new int[6];
+
+                        // Read the value of the first value and print it.
+                        // Remember that the first index of an array is 0
+                        Console.WriteLine(numbers[0]); // 0
+
+                        // Set the first value to 1
+                        numbers[0] = 1;
+
+                        // When we run this again, we get new value.
+                        Console.WriteLine(numbers[0]); // 1
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        We can also create an array with an initialised set of values.
+
+                        We don't need to specify the size of the array, as that can be inferred by the number of values we initialise it with
+                        ```cs
+                        // Creates an array of 6 ints.
+                        var fibbonacci = new int[] { 1, 1, 2, 3, 5, 8 };
+
+                        Console.WriteLine(numbers[5]); // 8
+                        ```
+                    </textarea>
+                </section>
+            </section>
         </div>
     </div>
 
