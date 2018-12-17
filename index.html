@@ -1,0 +1,560 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Learning C#</title>
+    <base target="_blank">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h2>CodeUp Leeds</h2>
+                <h1>Learning C#</h1>
+            </section>
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Getting started
+
+                        Wifi password: Blah
+
+                        Slides: Link to slides
+
+                        You can navigate the slides horizontally to go to the next topic, and vertically to explore a topic in more detail
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## 2 ways to follow along with the session
+                        * [repl.it](https://repl.it/languages/csharp) - In browser, there will be links to all exercise starters on here
+                        * Visual Studio Code - Requires some setup
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## VS Code instructions
+                        ### Download and install the following
+                        * [.NET Core SDK](https://dotnet.microsoft.com/download)
+                        * [Visual Studio Code](https://code.visualstudio.com/)
+                        * C# extension for VS code [here](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) or search for the C# extension within VS code.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        With all of that installed...
+
+                        * Make a new folder with the name you would like for the project.
+                        * Open the folder in VS code.
+                        * Open the integrated terminal (View -> Terminal)
+                        * Type `dotnet new console`
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        When it is finished you should see...
+
+                        * An `obj` folder
+                        * A `FolderName.csproj` file (Contains metadata about the project)
+                        * A `Program.cs` file. This is the one we are interested in.
+
+                        [You can view the same file online here.](https://repl.it/@gps035/HeartfeltCreepyRatios)
+
+                        We will talk about the contents in the next later.
+
+                        You can compile and run the program from the terminal with `dotnet run`.
+                    </textarea>
+                </section>
+            </section>
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                        # What is C#?
+
+                        C# is a programming language that is...
+                        * general-purpose
+                        * statically-typed
+                        * object-oriented
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## General Purpose
+
+                        C# doesn't have a particular niche, unlike some languages. It can be used for...
+                        * Back-end web applications ([ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.2))
+                        * Windows desktop applications ([WPF](https://docs.microsoft.com/en-us/dotnet/framework/wpf/getting-started/introduction-to-wpf-in-vs), [Winforms](https://docs.microsoft.com/en-us/dotnet/framework/wpf/getting-started/introduction-to-wpf-in-vs))
+                        * Android, iOS and MacOS apps ([Xamarin](https://visualstudio.microsoft.com/xamarin/))
+                        * Games ([Unity](https://unity3d.com/))
+                        * Front-end web development ([Blazor](https://blazor.net/) eventually, maybe...)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Statically Typed
+
+                        * C# code is compiled, so mistakes are found before the program runs.
+                        * Each variable must have a type that is known at compile time.
+                        * Variables cannot be assigned a value of the wrong type.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Object oriented
+
+                        All values in the language are objects
+
+                        Objects...
+                        * May contain data
+                        * Have a number of defined operations (methods) that they can perform
+                        * Provide an abstraction of the behaviour to other objects.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## .NET Framework
+
+                        The "standard library" of C#.
+
+                        .NET is a framework for building applications that is used by a number of languages including C#.
+
+                        Historically, this could only be used on Windows, as the `.NET Framework` was made by Microsoft and included as part of Windows.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Mono
+
+                        Mono is an open source re-implementation of much of the framework, as well as the language runtime.
+
+                        This allows C# to run on many other platforms, but has never had the same level of investment as Microsoft's offering.
+
+                        (Our online editor uses Mono)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## .NET Core
+
+                        Recently, however, Microsoft decided to re-write .NET from scratch and offer it as open-source, running on MacOS and Linux as well as Windows.
+
+                        Due to this, and other benefits, most new projects that would previously have targeted `.NET Framework`, are now targeting `.NET Core`.
+                    </textarea>
+                </section>
+            </section>
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Hello World ([link](https://repl.it/@gps035/HeartfeltCreepyRatios))
+
+                        ```cs
+                        using System;
+
+                        namespace HelloWorld
+                        {
+                            class Program
+                            {
+                                static void Main(string[] args)
+                                {
+                                    Console.WriteLine("Hello World!");
+                                }
+                            }
+                        }
+                        ```
+                        Output:
+                        ```txt
+                        Hello World!
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ```cs
+                        using System;
+
+                        namespace HelloWorld
+                        {
+                            ...
+                        }
+                        ```
+                        Namespaces are useful for organising, but today, our examples will simple, so we can remove this.
+                        ```cs
+                        using System;
+
+                        class Program
+                        {
+                            static void Main(string[] args)
+                            {
+                                Console.WriteLine("Hello World!");
+                            }
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## The `Main` method
+                        ```cs
+                        static void Main(string[] args)
+                        {
+                            ...
+                        }
+                        ```
+                        The C# compiler will look for a `static` method called `Main`, to use as an entry point for the program.
+
+                        It must be inside a `class`, but the name of this can be anything you want.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        It can return nothing (`void`) or a whole number (`int`).
+
+                        A `0` value returned indicates that the program ran successfully
+                        ```cs
+                        static void Main(string[] args)
+                        {
+                            return 0;
+                        }
+                        ```
+                        While any other number indicates a failure of some kind.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        It can accept an array of strings, arguments passed on the command line
+                        ```cs
+                        static void Main(string[] args)
+                        {
+                            ...
+                        }
+                        ```
+                        or nothing at all, those are the options.
+                        ```cs
+                        static void Main()
+                        {
+                            ...
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ```cs
+                            Console.WriteLine("Hello World!");
+                        ```
+                        Here we are calling the `WriteLine` method on the `Console` class.
+
+                        The affect of this is that whatever we passed as an argument is printed to the console.
+
+                        We don't have to pass a string, we could also pass the number `5` as well and that would be printed as well.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ```cs
+                            using System;
+                        ```
+                        Lastly, we are telling the compiler here that within this file, we want to be able to directly reference anything that is in the `System` namespace.
+
+                        The `Console` class is in this namespace, but we can reference it directly if we want.
+
+                        ```cs
+                        System.Console.WriteLine("Hello World!");
+                        ```
+                        This might be ok if we only want to use something from a namespace once in the current file, but it would get very tedious otherwise.
+                    </textarea>
+                </section>
+            </section>
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Primitive types and variables
+
+                        The language includes a number of keywords for various primitive types. Some of them are included below.
+                        ```cs
+                        int wholeNumber = 5; // Positive or negative number
+                        double fractionalNumber = 1.5; // Positive or negative floating point number
+                        char singleCharacter = 'a';
+                        string text = "Hello World!"; // A collection of characters
+                        bool trueOrFalse = true;
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Variables can be reassigned with new values of the same type
+                        ```cs
+                        int count = 0;
+                        count = count + 1;
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        But not with a different type
+                        ```cs
+                        int count = 0;
+                        count = "1"; // error CS0029: Cannot implicitly convert type `string' to `int'
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        The compiler can also infer the type of a local variable from its assigned value. This can be useful when it is obvious what the type is.
+                        ```cs
+                        var wholeNumber = 5;
+                        var fractionalNumber = 1.5;
+                        var singleCharacter = 'a';
+                        var text = "Hello World!";
+                        var trueOrFalse = true;
+                        ```
+                        Note that this doesn't mean we can assign a different type to the variable later.
+                        ```cs
+                        wholeNumber = "1"; // error CS0029: Cannot implicitly convert type `string' to `int'
+                        ```
+                    </textarea>
+                </section>
+            </section>
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Basic operations
+
+                        ```cs
+                        var result = 1 + 1; // 2
+                        var result = 2 - 1; // 1
+                        var result = 5 * 2; // 10
+                        var result = 5 / 2; // 2
+
+                        var result = 5.0 / 2; // 2.5
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Comparisons
+
+                        ```cs
+                        var result = 1 == 1; // true
+                        var result = 2 != 1; // true
+                        var result = 5 > 2; // true
+                        var result = 5 < 2; // false
+
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+
+                        The `+` operator is also used to concatenate strings;
+
+                        ```cs
+                        var result = "Hello " + "World!"; // "Hello World!"
+
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Strange rounding issues can sometimes arise with double values, as it is quite hard to efficiently store decimals in a binary value.
+                        As a tradeoff, in exchange for slightly less efficiency, you can use decimals for more predictable bevaviour. The `m` suffix denotes a decimal value.
+                        ```cs
+                        double firstResult = 0.3;
+                        System.Console.WriteLine(0.1 + 0.2 == firstResult); // False
+
+                        decimal secondResult = 0.3m;
+                        System.Console.WriteLine(0.1m + 0.2m == secondResult); // True
+                        ```
+                    </textarea>
+                </section>
+            </section>
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Control flow
+
+                        We may wish to do something extra depending on a certain value, and we can use an `if` statement for that.
+                        ```cs
+                        bool shouldDoExtraThing = value == 0;
+                        if (shouldDoExtraThing)
+                        {
+                            // Do the extra thing
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Of course, the extra variable is not necessary
+                        ```cs
+                        if (value == 0)
+                        {
+                            // Do the extra thing
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                       Using an `else` statement, we can do something else when the if condition is not true;
+                        ```cs
+                        if (value == 0)
+                        {
+                            // Do the extra thing
+                        }
+                        else
+                        {
+                            // Do the other thing
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## The `while` loop
+                        This is like an `if` statement, but it will excecute the body, until the condition is false.
+
+                        This will loop forever.
+                        ```cs
+                        while (true)
+                        {
+                            // Do something
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        This will loop 5 times.
+                        ```cs
+                        int i = 0;
+                        while (i < 5)
+                        {
+                            // Do something
+                            i += 1;
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## The `for` loop
+                        This is the same as the loop in the last slide, except everything we need to know about the loop is at the top.
+                        ```cs
+                        int i;
+                        for (i = 0; i < 5; i += 1;)
+                        {
+                            // Do something
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        We can also inline the variable we use to count steps
+                        ```cs
+                        for (var i = 0; i < 5; i += 1;)
+                        {
+                            // Do something
+                        }
+                        ```
+                    </textarea>
+                </section>
+            </section>
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Methods
+
+                        We can define new methods in our classes that can be called in other methods. For example:
+
+                        ```cs
+                        static void Main(string[] args)
+                        {
+                            SayHello();
+                        }
+
+                        static void SayHello()
+                        {
+                            Console.WriteLine("Hello World!");
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Methods can accept one or more parameters
+
+                        ```cs
+                        static void Main(string[] args)
+                        {
+                            SayHello("World");
+                            SayHello("CodeUp Leeds");
+                        }
+
+                        static void SayHello(string name)
+                        {
+                            Console.WriteLine("Hello " + name + "!");
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        They can also return a single value
+
+                        ```cs
+                        static void Main(string[] args)
+                        {
+                            var total = Add(1, 2);
+                            Console.WriteLine("Total: " + total);
+                        }
+
+                        static int Add(int first, int second)
+                        {
+                            return first + second;
+                        }
+                        ```
+                    </textarea>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info about config & dependencies:
+        // - https://github.com/hakimel/reveal.js#configuration
+        // - https://github.com/hakimel/reveal.js#dependencies
+        Reveal.initialize({
+            dependencies: [
+                { src: 'plugin/markdown/marked.js' },
+                { src: 'plugin/markdown/markdown.js' },
+                { src: 'plugin/notes/notes.js', async: true },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+            ]
+        });
+    </script>
+</body>
+
+</html>
