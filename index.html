@@ -45,7 +45,7 @@
                 <section data-markdown>
                     <textarea data-template>
                         ## 2 ways to follow along with the session
-                        * [repl.it](https://repl.it/languages/csharp) - In browser, there will be links to all exercise starters on here
+                        * [repl.it](https://repl.it/languages/csharp) - In browser, there will be links to all examples and exercise starters on here
                         * Visual Studio Code - Requires some setup
                     </textarea>
                 </section>
@@ -694,6 +694,214 @@
                 <section data-markdown>
                     <textarea data-template>
                         ## Classes
+
+                        If we want to define and use our own kinds of objects, we have to define a template, called a class for the new objects.
+
+                        Lets define a class for the representation of a person that we used before.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Classes
+
+                        We are able to add variables, called fields to the class.
+
+                        ```cs
+                        class Person
+                        {
+                            string Name;
+                            int Age;
+                        }
+                        ```
+
+                        We can then use the class similar to how we have used Lists and Dictionaries
+                        ```cs
+                        var john = new Person();
+                        john.Name = "John Doe";
+                        john.Age = 56;
+                        Console.WriteLine(john.Name);
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Properties
+
+                        Instead of using fields, it is preferable to use properties instead.
+
+                        This allows us to later change what happens when a consumer gets or sets one of our variables.
+
+                        ```cs
+                        class Person
+                        {
+                            string Name { get; set; }
+                            int Age { get; set; }
+                        }
+                        ```
+
+                        From outside the class, everything works as it did before.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Constructors
+
+                        Constructors allow us to define what happens when a new object of our class is created.
+                        You can think of it as a special method that runs when a new object is created.
+
+                        If you don't define one, then one is created for you.
+
+                        ```cs
+                        class Person
+                        {
+                            Person()
+                            {
+
+                            }
+                            ...
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        We can use the constructor to apply some default values
+
+                        ```cs
+                        Person()
+                        {
+                            this.Name = "Default name";
+                            this.Age = 1;
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Better yet, we can allow the consumer to define the initial values.
+
+                        ```cs
+                        Person(string name, int age)
+                        {
+                            this.Name = name;
+                            this.Age = age;
+                        }
+                        ```
+
+                        Now when creating a new `Person` we can't forget to initalise the new object correctly.
+                        ```cs
+                        var john = new Person("John Doe", 56);
+                        Console.WriteLine(john.Name);
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Let's add a new property.
+
+                        ```cs
+                        Person(string name, int age, string favouriteColour)
+                        {
+                            this.Name = name;
+                            this.Age = age;
+                            this.FavouriteColour = favouriteColour;
+                        }
+
+                        string Name { get; set; }
+                        int Age { get; set; }
+                        string FavouriteColour { get; set; }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Because we are now initialising the object correctly every time, if we wanted to prevent some values from being changed, we can remove the setter.
+
+                        ```cs
+                        string Name { get; }
+                        int Age { get; set; }
+                        string FavouriteColour { get; }
+                        ```
+
+                        Now there is no way to change the value of the name property
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        If we had some commonly used functionality associated with the `Person` object, we could define a method to encapsulate that behaviour
+
+                        ```cs
+                        string Introduction()
+                        {
+                            return "Hi my name is " +
+                                    this.Name +
+                                    ", I am " +
+                                    this.Age +
+                                    " years old and my favourite colour is " +
+                                    this.FavouriteColour;
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Visibility
+
+                        We might now decide that `FavouriteColour` doesn't really need to be visible to any consumers of our class.
+                        We can make it `private` so that it cannot be accessed, except by methods inside the class.
+
+                        ```cs
+                        string Name { get; set; }
+                        int Age { get; set; }
+                        private string FavouriteColour { get; set; }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Visibility modifiers can be applied to classes, and methods as well as fields, and properties.
+
+                        This can be useful to allow you to hide implementation details of your class's behavour, and expose a simple contract externally.
+
+                        This gives you more freedom to later change the implentation without changing the contract.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        There are multiple visibility modifiers in C# but for now we will look at 3.
+                        * `public` - This means that the member is visible everywhere
+                        * `internal` - This means that the member is visible inside the current project. We are currently using only one project, but if you later referenced this project from another, only public members would be visible externally.
+                        * `private` - This means that the member is visible only inside the current class.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Static members
+
+                        There is one more keyword we have seen: `static`.
+
+                        You can think of this as saying that the member is associated with the `class` itself, not any particular object of that `class`.
+
+                        Classes can also be `static`, meaning that they can only contain static members, and an we cannot create a new instance of it.
+
+                        We have seen an example of a static class already: The `Console` class, with the static method `WriteLine`
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Let's add a static method to our `Person` class.
+
+                        ```cs
+                        static bool LikesGreen(Person person)
+                        {
+                            return person.FavouriteColour == "Green";
+                        }
+                        ```
+                        Notice that we can use the `private` members even in a `static` method.
+                        ```cs
+                        var johnLikesGreen = Person.LikesGreen(john);
+                        Console.WriteLine(johnLikesGreen); // true
+                        ```
                     </textarea>
                 </section>
             </section>
