@@ -665,7 +665,8 @@
                         ```cs
                         if (namesWithAge.ContainsKey("Joe Dohn"))
                         {
-                            Console.WriteLine(namesWithAge["Joe Dohn"]); // Doesn't run
+                            // Doesn't run
+                            Console.WriteLine(namesWithAge["Joe Dohn"]);
                         }
                         ```
                     </textarea>
@@ -678,7 +679,7 @@
 
                         This allows us to iterate over a collection, and perform an action with each element.
 
-                        Using the dictionary from last time.
+                        Using the dictionary from the last slide.
 
                         ```cs
                         foreach(KeyValuePair<string, int> person in namesWithAge)
