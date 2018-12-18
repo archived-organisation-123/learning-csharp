@@ -909,6 +909,93 @@
                 <section data-markdown>
                     <textarea data-template>
                         ## Inheritance
+
+                        Classes can inherit behaviour and state from another class.
+
+                        This means that we can derive a more specific class from another without having to reimplement everything.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Let's start with a simple class.
+                        ```cs
+                        class Animal
+                        {
+                            Animal(int age, int numberOfLegs)
+                            {
+                                this.Age = age;
+                                this.NumberOfLegs = numberOfLegs;
+                            }
+
+                            int Age { get; set; }
+                            int NumberOfLegs { get; }
+
+                            string Speak() => "*makes noises*";
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        We can make a more specific class than `Animal`
+
+                        ```cs
+                        class Dog : Animal
+                        {
+                            Dog(int age) : base(age, 4)
+                            {
+
+                            }
+                        }
+                        ```
+                        Just like when we create an instance of a class with a constructor that takes parameters, we are required to call the base constructor when deriving a class as well.
+                        We don't have to have the same signature for the constructor, so we can pass values instead of variables when we know that the number will not change for our derived class.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        When we use our `Dog` class, we can see that the members of `Animal` are included.
+
+                        ```cs
+                        var animal = new Animal(17, 2);
+                        Console.WriteLine(animal.Speak()); // "*makes noises*"
+
+                        var dog = new Dog(3);
+                        Console.WriteLine(dog.Speak()); // "*makes noises*"
+                        Console.WriteLine(dog.NumberOfLegs) // 4
+                        ```
+                        If we decided to add members to our `Dog` class, they would not affect the base `Animal` class.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        We can also override members with a more specific implementation. To do that, we need to mark the base member as `virtual`.
+
+                        ```cs
+                        // In the Animal class
+                        virtual string Speak() => "*makes noises*";
+
+                        // In the Dog class
+                        override string Speak() => "Woof!";
+                        ```
+
+                        Now when we ask a dog to speak, it will make more sense.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        One important thing to know about inheritance is that derived classes can fill in for the base class, including any overriden behviour.
+
+                        ```cs
+                        void Describe(Animal animal)
+                        {
+                            Console.WriteLine("This animal is " + animal.Age + " years old, and has " + animal.NumberOfLegs " legs");
+                        }
+
+                        ...
+
+                        Describe(dog) // This animal is 3 years old, and has 4 legs.
+                        ```
                     </textarea>
                 </section>
             </section>
