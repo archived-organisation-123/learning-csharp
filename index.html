@@ -37,7 +37,7 @@
 
                         Wifi password: Blah
 
-                        Slides: Link to slides
+                        Slides: [learning-csharp-codeup-leeds.netlify.com](https://learning-csharp-codeup-leeds.netlify.com/)
 
                         You can navigate the slides horizontally to go to the next topic, and vertically to explore a topic in more detail
                     </textarea>
@@ -601,6 +601,56 @@
                         var fibbonacci = new int[] { 1, 1, 2, 3, 5, 8 };
 
                         Console.WriteLine(numbers[5]); // 8
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Lists
+
+                        When using arrays, we are not able to add or remove elements, we can only modify the ones that are already there, so the size cannot change.
+
+                        Lists allow us to change the size by adding or removing elements.
+
+                        To use a list you will need to import it's namespace with `using System.Collections.Generic;`
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ```cs
+                        // Create an empty list of strings.
+                        var names = new List<string>();
+
+                        //Add elements
+                        names.Add("John Doe");
+                        names.Add("Jane Doe");
+
+                        // Note we are using Count not Length
+                        Console.WriteLine(names.Count); // 2
+                        Console.WriteLine(names[0]); // John Doe
+
+                        names.Remove("John Doe"); // We can also use RemoveAt(0)
+                        Console.WriteLine(names.Count); // 1
+                        Console.WriteLine(names[0]); // Jane Doe
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Dictionaries
+
+                        Dictionaries allow us to store a mapping of one type of values to another.
+
+                        ```cs
+                        // Create an empty list of strings.
+                        var namesWithAge = new Dictionary<string, int>();
+
+                        //Add elements
+                        namesWithAge.Add("John Doe", 56);
+                        namesWithAge.Add("Jane Doe", 31);
+
+                        // Use the key to get the value
+                        Console.WriteLine(namesWithAge["John Doe"]); // 56
                         ```
                     </textarea>
                 </section>
