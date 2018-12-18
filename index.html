@@ -565,7 +565,7 @@
                         Console.WriteLine("Number of arguments passed " + args.Length); // args.Length: 0
 
                         // This attempt to access the first argument fails
-                        Console.WriteLine(args[0]); // System.IndexOutOfRangeException: Index was outside the bounds of the array.
+                        Console.WriteLine(args[0]); // IndexOutOfRangeException: Index was outside the bounds of the array.
                         ```
                     </textarea>
                 </section>
@@ -642,7 +642,7 @@
                         Dictionaries allow us to store a mapping of one type of values to another.
 
                         ```cs
-                        // Create an empty list of strings.
+                        // Create a dictionary.
                         var namesWithAge = new Dictionary<string, int>();
 
                         //Add elements
@@ -651,6 +651,33 @@
 
                         // Use the key to get the value
                         Console.WriteLine(namesWithAge["John Doe"]); // 56
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Just like when we tried to get a value from a list that didn't exist, we get an error when trying to find a dictionary value when the key does not exist.
+
+                        ```cs
+                        Console.WriteLine(namesWithAge["Joe Dohn"]); // KeyNotFoundException: The given key 'Joe Dohn' was not present in the dictionary.
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## `foreach` loop
+
+                        There is one more type of loop that is worth covering: the `foreach` loop.
+
+                        This allows us to iterate over a collection, and perform an action with each element.
+
+                        Using the dictionary from last time.
+
+                        ```cs
+                        foreach(KeyValuePair<string, int> person in namesWithAge)
+                        {
+                            Console.WriteLine(person.Key + " is " person.Value + " years old.");
+                        }
                         ```
                     </textarea>
                 </section>
