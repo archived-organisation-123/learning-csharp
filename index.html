@@ -661,6 +661,13 @@
                         ```cs
                         Console.WriteLine(namesWithAge["Joe Dohn"]); // KeyNotFoundException: The given key 'Joe Dohn' was not present in the dictionary.
                         ```
+                        We can fix this.
+                        ```cs
+                        if (namesWithAge.ContainsKey("Joe Dohn"))
+                        {
+                            Console.WriteLine(namesWithAge["Joe Dohn"]); // Doesn't run
+                        }
+                        ```
                     </textarea>
                 </section>
                 <section data-markdown>
