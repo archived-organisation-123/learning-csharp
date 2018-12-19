@@ -962,7 +962,7 @@
 
                         var dog = new Dog(3);
                         Console.WriteLine(dog.Speak()); // "*makes noises*"
-                        Console.WriteLine(dog.NumberOfLegs) // 4
+                        Console.WriteLine(dog.NumberOfLegs); // 4
                         ```
                         If we decided to add members to our `Dog` class, they would not affect the base `Animal` class.
                     </textarea>
@@ -996,6 +996,8 @@
 
                         Describe(dog) // This animal is 3 years old, and has 4 legs.
                         ```
+
+                        We can also inherit from only one base class.
                     </textarea>
                 </section>
             </section>
@@ -1003,6 +1005,28 @@
                 <section data-markdown>
                     <textarea data-template>
                         ## Abstract classes
+                        An `animal` is a an abstract concept really, isn't it?
+
+                        It doesn't really make sense to have an instance of our `Animal` class.
+
+                        Really, we should only need to create instances of derived class, like `Dog`.
+
+                        We can describe this with abstract classes
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        To make a class abstract, simply add the `abstract` modifier to the class.
+                        ```cs
+                        abstract class Animal
+                        ```
+                        Now it is not possible for someone to make an `Animal`, but any instance of `Dog` for example can be used when an `Animal` is required.
+
+                        We can also make methods `abstract`. This means that we don't need to implement the method in this base class, but any derived class must provide an implementation
+
+                        ```cs
+                        abstract string Speak();
+                        ```
                     </textarea>
                 </section>
             </section>
@@ -1010,6 +1034,44 @@
                 <section data-markdown>
                     <textarea data-template>
                         ## Interfaces
+                        We can do much of the same thing using interfaces.
+
+                        An `interface` is a definition of a contract, that must be defined by any class implementing the `interface`.
+
+                        Interfaces just describe what an implementation can do, not how it should be done.
+
+                        A consumer can then say "Give me an object that implements this interface", and you are free to pass whatever implementation you like.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Let's rewrite animal as an interface.
+                        ```cs
+                        interface IAnimal
+                        {
+                            int Age { get; set; }
+                            int NumberOfLegs { get; }
+                            string Speak();
+                        }
+                        ```
+                        (Note: In .NET, it is customary to name an interface starting with `I`)
+
+                        We can now use `IAnimal` anywhere that we would have previously used `Animal`.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        If we create a new class, and say that it implements `IAnimal`
+
+                        ```cs
+                        class Cow : IAnimal
+                        {
+                            //Error
+                        }
+                        ```
+                        This code will not compile, until we implement the methods that we have said we would.
+
+                        If we want, our classes can implement many interfaces, not just one.
                     </textarea>
                 </section>
             </section>
@@ -1017,6 +1079,127 @@
                 <section data-markdown>
                     <textarea data-template>
                         ## Errors and error handling
+
+                        While it would be nice to have all errors caught at compile time, before running the program, errors can still happen at run-time
+
+                        Additionally, when programming, you may notice a possible set of circumstances where there's just nothing you can reasonably do.
+
+                        In this case you can use an exception, to provide debugging information, and a nicer error message.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Exceptions
+
+                        You can create a new type of exception to describe the error, by inheriting from `System.Exception`, the base exception type.
+
+                        There may be an existing exception type that you can reuse if it suits the purpose.
+
+                        You can throw an exception like this, assuming you have created a MyException class:
+
+                        ```cs
+                        throw new MyException("Something really bad has happened :(");
+                        ```
+                        (Hopefully in context, you can write a better message!)
+
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        When an exception is thrown and not handled in code, then the program will terminate. Before that though, it will print a `stack trace`.
+
+                        The stack trace will contain information about where in the code the exception was thrown, as well as the exception type and message.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Handling exceptions:
+
+                        If we are seeing that an exception is thrown, and we know how we could recover from the error, we can `catch` the exception.
+
+                        ```cs
+                        try
+                        {
+                            MethodThatCouldThrow();
+                        }
+                        catch (MyException ex)
+                        {
+                            // Do stuff to handle the error
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        After catching, we may determine that we can't actually handle the error, in that case we can rethrow.
+
+                        ```cs
+                        catch (MyException ex)
+                        {
+                            if (!CanHandleException(ex))
+                            {
+                                throw;
+                            }
+                            // Do stuff to handle the error
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Or we could provide more context, by wrapping the exception.
+
+                        ```cs
+                        catch (MyException ex)
+                        {
+                            if (!CanHandleException(ex))
+                            {
+                                throw new MyWrapperException("I tried my best :|", ex);
+                            }
+                            // Do stuff to handle the error
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        If the code we are excecuting when the error happens involves something that must be cleaned up at the end, we can run some code after the `try` block, that will always run, no matter what exception gets thrown.
+
+                        ```cs
+                        var myFile = OpenAndLockFile();
+                        try
+                        {
+                            ProcessFile(myFile);
+                        }
+                        finally
+                        {
+                            myFile.Close();
+                        }
+                        ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        The try-finally pattern is very common, but problem is that it is very easy to forget to do the clean up.
+
+                        .NET provides us with a nicer pattern for doing this, for any class of object that implements `IDisposable`.
+
+                        It has one method defined:
+                        ```cs
+                        public void Dispose();
+                        ```
+                        So if we imagine that our file class implements `IDisposable`, where it closes the file, and does any other cleanup, then we can use it in a better way.
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ```cs
+                        using(var myFile = OpenAndLockFile())
+                        {
+                            ProcessFile(myFile);
+                        }
+                        ```
+                        When the program excecution reaches the closing brace, then the `Dispose` method will be called.
                     </textarea>
                 </section>
             </section>
