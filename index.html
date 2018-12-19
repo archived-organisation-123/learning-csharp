@@ -921,6 +921,8 @@
                         Classes can inherit behaviour and state from another class.
 
                         This means that we can derive a more specific class from another without having to reimplement everything.
+
+                        [link](https://repl.it/@gps035/Learning-C-Inheritance)
                     </textarea>
                 </section>
                 <section data-markdown>
@@ -929,16 +931,16 @@
                         ```cs
                         class Animal
                         {
-                            Animal(int age, int numberOfLegs)
+                            public Animal(int age, int numberOfLegs)
                             {
                                 this.Age = age;
                                 this.NumberOfLegs = numberOfLegs;
                             }
 
-                            int Age { get; set; }
-                            int NumberOfLegs { get; }
+                            public int Age { get; set; }
+                            public int NumberOfLegs { get; }
 
-                            string Speak() => "*makes noises*";
+                            public string Speak() => "*makes noises*";
                         }
                         ```
                     </textarea>
@@ -995,14 +997,14 @@
                         One important thing to know about inheritance is that derived classes can fill in for the base class, including any overriden behviour.
 
                         ```cs
-                        void Describe(Animal animal)
+                        static void Describe(Animal animal)
                         {
-                            Console.WriteLine("This animal is " + animal.Age + " years old, and has " + animal.NumberOfLegs " legs");
+                            Console.WriteLine("This animal is " + animal.Age + " years old, and has " + animal.NumberOfLegs + " legs");
                         }
 
                         ...
 
-                        Describe(dog) // This animal is 3 years old, and has 4 legs.
+                        Describe(dog); // This animal is 3 years old, and has 4 legs.
                         ```
 
                         We can also inherit from only one base class.
