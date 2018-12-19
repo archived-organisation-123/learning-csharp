@@ -161,7 +161,7 @@
             <section>
                 <section data-markdown>
                     <textarea data-template>
-                        ## Hello World ([link](https://repl.it/@gps035/HeartfeltCreepyRatios))
+                        ## Hello World ([link](https://repl.it/@gps035/Learning-C-Hello-World))
 
                         ```cs
                         using System;
@@ -227,7 +227,7 @@
 
                         A `0` value returned indicates that the program ran successfully
                         ```cs
-                        static void Main(string[] args)
+                        static int Main(string[] args)
                         {
                             return 0;
                         }
@@ -294,6 +294,7 @@
                         string text = "Hello World!"; // A collection of characters
                         bool trueOrFalse = true;
                         ```
+                        [link](https://repl.it/@gps035/Learning-C-Variables)
                     </textarea>
                 </section>
                 <section data-markdown>
@@ -344,6 +345,7 @@
 
                         var result = 5.0 / 2; // 2.5
                         ```
+                        [link](https://repl.it/@gps035/Learning-C-Operators)
                     </textarea>
                 </section>
                 <section data-markdown>
@@ -377,10 +379,10 @@
                         As a tradeoff, in exchange for slightly less efficiency, you can use decimals for more predictable bevaviour. The `m` suffix denotes a decimal value.
                         ```cs
                         double firstResult = 0.3;
-                        System.Console.WriteLine(0.1 + 0.2 == firstResult); // False
+                        Console.WriteLine(0.1 + 0.2 == firstResult); // False
 
                         decimal secondResult = 0.3m;
-                        System.Console.WriteLine(0.1m + 0.2m == secondResult); // True
+                        Console.WriteLine(0.1m + 0.2m == secondResult); // True
                         ```
                     </textarea>
                 </section>
@@ -398,6 +400,7 @@
                             // Do the extra thing
                         }
                         ```
+                        [link](https://repl.it/@gps035/Learning-C-Control-Flow)
                     </textarea>
                 </section>
                 <section data-markdown>
@@ -458,8 +461,8 @@
                         ## The `for` loop
                         This is the same as the loop in the last slide, except everything we need to know about the loop is at the top.
                         ```cs
-                        int i;
-                        for (i = 0; i < 5; i += 1;)
+                        int j;
+                        for (j = 0; j < 5; j += 1)
                         {
                             // Do something
                         }
@@ -470,7 +473,7 @@
                     <textarea data-template>
                         We can also inline the variable we use to count steps
                         ```cs
-                        for (var i = 0; i < 5; i += 1;)
+                        for (var j = 0; j < 5; j += 1)
                         {
                             // Do something
                         }
@@ -496,6 +499,7 @@
                             Console.WriteLine("Hello World!");
                         }
                         ```
+                        [link](https://repl.it/@gps035/Learning-C-Methods)
                     </textarea>
                 </section>
                 <section data-markdown>
@@ -547,6 +551,8 @@
                         * Arrays
                         * Lists
                         * Dictionaries
+
+                        [link](https://repl.it/@gps035/Learning-C-Collections)
                     </textarea>
                 </section>
                 <section data-markdown>
@@ -599,7 +605,7 @@
                         // Creates an array of 6 ints.
                         var fibbonacci = new int[] { 1, 1, 2, 3, 5, 8 };
 
-                        Console.WriteLine(numbers[5]); // 8
+                        Console.WriteLine(fibbonacci[5]); // 8
                         ```
                     </textarea>
                 </section>
