@@ -90,9 +90,9 @@
                         # What is C#?
 
                         C# is a programming language that is...
-                        * general-purpose
-                        * statically-typed
-                        * object-oriented
+                        * general-purpose<!-- .element: class="fragment" -->
+                        * statically-typed<!-- .element: class="fragment" -->
+                        * object-oriented<!-- .element: class="fragment" -->
                     </textarea>
                 </section>
                 <section data-markdown>
@@ -111,9 +111,9 @@
                     <textarea data-template>
                         ## Statically Typed
 
-                        * C# code is compiled, so mistakes are found before the program runs.
-                        * Each variable must have a type that is known at compile time.
-                        * Variables cannot be assigned a value of the wrong type.
+                        * C# code is compiled, so mistakes are found before the program runs.<!-- .element: class="fragment" -->
+                        * Each variable must have a type that is known at compile time.<!-- .element: class="fragment" -->
+                        * Variables cannot be assigned a value of the wrong type.<!-- .element: class="fragment" -->
                     </textarea>
                 </section>
                 <section data-markdown>
@@ -123,9 +123,9 @@
                         All values in the language are objects
 
                         Objects...
-                        * May contain data
-                        * Have a number of defined operations (methods) that they can perform
-                        * Provide an abstraction of the behaviour to other objects.
+                        * May contain data<!-- .element: class="fragment" -->
+                        * Have a number of defined operations (methods) that they can perform<!-- .element: class="fragment" -->
+                        * Provide an abstraction of the behaviour to other objects.<!-- .element: class="fragment" -->
                     </textarea>
                 </section>
                 <section data-markdown>
@@ -357,6 +357,7 @@
                         var result = 2 != 1; // true
                         var result = 5 > 2; // true
                         var result = 5 < 2; // false
+                        var result = !true; // false
 
                         ```
                     </textarea>
@@ -432,7 +433,7 @@
                         ## The `while` loop
                         This is like an `if` statement, but it will excecute the body, until the condition is false.
 
-                        This will loop forever.
+                        This will loop forever.<!-- .element: class="fragment" -->
                         ```cs
                         while (true)
                         {
@@ -948,8 +949,8 @@
                             }
                         }
                         ```
-                        Just like when we create an instance of a class with a constructor that takes parameters, we are required to call the base constructor when deriving a class as well.
-                        We don't have to have the same signature for the constructor, so we can pass values instead of variables when we know that the number will not change for our derived class.
+                        As the base class constructor has required parameters, we have to call the base constructor from the deriving class.
+                        We don't need the same signature for the constructor, so we can pass values instead of variables when we know that the value will be the same for all instances.
                     </textarea>
                 </section>
                 <section data-markdown>
@@ -1054,7 +1055,8 @@
                             string Speak();
                         }
                         ```
-                        (Note: In .NET, it is customary to name an interface starting with `I`)
+
+                        Note that in .NET, it is customary to name an interface starting with `I`
 
                         We can now use `IAnimal` anywhere that we would have previously used `Animal`.
                     </textarea>
@@ -1214,6 +1216,7 @@
         // - https://github.com/hakimel/reveal.js#configuration
         // - https://github.com/hakimel/reveal.js#dependencies
         Reveal.initialize({
+            transition: 'slide',
             dependencies: [
                 { src: 'plugin/markdown/marked.js' },
                 { src: 'plugin/markdown/markdown.js' },
